@@ -17,19 +17,36 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal">
-            <Button Height="28" Width="28" Margin="4 8 4 8"
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Button Height="28" Width="28" Margin="8 8 4 8"
+                    Command="{Binding OpenFile}"
                     ToolTip="Open CSV file">
                 <Image Source="{orccontrols:FontImage {x:Static local:FontAwesome.FolderO}, FontFamily=FontAwesome}"/>
             </Button>
             
             <Button Height="28" Width="28" Margin="4 8 4 8"
+                    Command="{Binding SaveFile}"
                     ToolTip="Save CSV file">
                 <Image Source="{orccontrols:FontImage {x:Static local:FontAwesome.Save}, FontFamily=FontAwesome}"/>
             </Button>
+
+            <Button Height="28" Width="28" Margin="4 8 8 8" HorizontalAlignment="Right"
+                    Command="{Binding OpenPackageSourceSettings}"
+                    ToolTip="Open package source settigns">
+                <Image Source="{orccontrols:FontImage {x:Static local:FontAwesome.Cogs}}"/>
+            </Button>
+            
         </StackPanel>
       
         <csv:CsvTextEditorControl Grid.Row="1" MinHeight="200"/>
+        <Button Grid.Column="1" Grid.Row="1"
+                Command="{Binding GatherDependenciesOnProject}">
+            Give me the full list of dependencies!
+        </Button>
     </Grid>
 </catel:DataWindow>

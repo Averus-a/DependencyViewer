@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:Orc.DependencyViewer"
              StartupUri="Views\MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Orc.Controls;component/Themes/Generic.xaml"/>
+                <ResourceDictionary Source="/Orc.NuGetExplorer.Xaml;component/Themes/Generic.xaml"/>
+                <ResourceDictionary Source="/Orchestra.Core;component/Themes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary> 
     </Application.Resources>
 </Application>

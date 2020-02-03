@@ -1,6 +1,8 @@
 ﻿namespace Orc.DependencyViewer
 {
     using Catel.Logging;
+    using Catel.Reflection;
+    using Orchestra;
     using System;
     using System.Collections.Generic;
     using System.Configuration;
@@ -19,8 +21,10 @@
         {
 #if DEBUG
             LogManager.AddDebugListener(false);
-            InitializeFonts();
 #endif
+            InitializeFonts();
+            StyleHelper.CreateStyleForwardersForDefaultStyles();
+            this.ApplyTheme();
             base.OnStartup(e);
         }
 

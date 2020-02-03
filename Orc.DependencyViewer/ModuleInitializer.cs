@@ -1,8 +1,13 @@
-﻿using Catel.IoC;
-using Orc.DependencyViewer.Services;
-
-namespace Orc.DependencyViewer
+﻿namespace Orc.DependencyViewer
 {
+    using Catel.IoC;
+    using NuGet.Frameworks;
+    using Orc.DependencyViewer.ProjectManagement;
+    using Orc.DependencyViewer.Services;
+    using Orc.NuGetExplorer;
+    using Orc.NuGetExplorer.Services;
+    using Orc.ProjectManagement;
+
     public static class ModuleInitializer
     {
         public static void Initialize()
@@ -10,6 +15,16 @@ namespace Orc.DependencyViewer
             var serviceLocator = ServiceLocator.Default;
             serviceLocator.RegisterType<IFileWriterService, ExportFileWriterService>();
             serviceLocator.RegisterType<IFileReaderService, ImportFileReaderService>();
+            serviceLocator.RegisterType<IProject, PackageListProject>();
+
+            serviceLocator.RegisterType<IProjectReader, ProjectReader>();
+            serviceLocator.RegisterType<IOnProjectOperationService, OnProjectDependenciesGatherService>();
+            serviceLocator.RegisterType<IPackageDependencyResolverService, PackageDependencyResolverService>();
+            serviceLocator.RegisterType<IFrameworkNameProvider, DefaultFrameworkNameProvider>();
+            serviceLocator.RegisterType<IDefaultNuGetFramework, DefaultNuGetFramework>();
+            serviceLocator.RegisterType<INuGetExplorerInitializationService, DependencyViewerNuGetInitializationService>();
+
+            //serviceLocator.RegisterType<IProjectWriter>();
         }
     }
 }

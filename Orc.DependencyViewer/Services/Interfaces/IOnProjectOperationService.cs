@@ -1,14 +1,14 @@
 ﻿namespace Orc.DependencyViewer.Services
 {
-    using Orc.DependencyViewer.Model;
+    using Orc.ProjectManagement;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
 
-    public interface IFileReaderService
+    public interface IOnProjectOperationService
     {
-        Task<IEnumerable<IEntity>> ReadAsync(string path);
+        Task<bool> ExecuteAsync(IProject project);
     }
 }

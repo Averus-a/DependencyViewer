@@ -55,11 +55,11 @@
     <Reference Include="CsvHelper, Version=12.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.12.2.2\lib\net47\CsvHelper.dll</HintPath>
     </Reference>
-    <Reference Include="Fluent, Version=7.0.0.0, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Fluent.Ribbon.7.0.1\lib\net462\Fluent.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <HintPath>..\packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -146,6 +146,15 @@
     <Reference Include="Orc.NuGetExplorer.Xaml, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Orc.NuGetExplorer.Xaml.4.0.0-beta0002\lib\net47\Orc.NuGetExplorer.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="Orc.ProjectManagement, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Orc.ProjectManagement.3.3.0\lib\net47\Orc.ProjectManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="Orc.SystemInfo, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Orc.SystemInfo.3.2.0\lib\net47\Orc.SystemInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Orchestra.Core, Version=5.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Orchestra.Core.5.3.1\lib\net47\Orchestra.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -172,6 +181,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
     </Reference>
@@ -245,11 +255,23 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Fonts\FontAwesome.cs" />
+    <Compile Include="Maps\PackageReferenceMap.cs" />
+    <Compile Include="Model\IEntity.cs" />
+    <Compile Include="Model\PackageReference.cs" />
     <Compile Include="ModuleInitializer.cs" />
+    <Compile Include="NuGet\PackageDependencyResolverService.cs" />
+    <Compile Include="NuGet\Interfaces\IPackageDependencyResolverService.cs" />
+    <Compile Include="ProjectManagement\PackageListProject.cs" />
+    <Compile Include="ProjectManagement\Serializers\ProjectReader.cs" />
+    <Compile Include="Services\CsvConfigurationService.cs" />
     <Compile Include="Services\ExportFileWriterService.cs" />
+    <Compile Include="Services\Interfaces\ICsvConfigurationService.cs" />
     <Compile Include="Services\ImportFileReaderService.cs" />
     <Compile Include="Services\Interfaces\IFileReaderService.cs" />
     <Compile Include="Services\Interfaces\IFileWriterService.cs" />
+    <Compile Include="Services\Interfaces\IOnProjectOperationService.cs" />
+    <Compile Include="NuGet\DependencyViewerNuGetInitializationService.cs" />
+    <Compile Include="Services\OnProjectDependenciesGatherService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -284,6 +306,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
