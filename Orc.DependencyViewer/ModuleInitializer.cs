@@ -18,6 +18,7 @@
             serviceLocator.RegisterType<IProject, PackageListProject>();
 
             serviceLocator.RegisterType<IProjectReader, ProjectReader>();
+            serviceLocator.RegisterType<IProjectWriter, ProjectWriter>();
             serviceLocator.RegisterType<IOnProjectOperationService, OnProjectDependenciesGatherService>();
             serviceLocator.RegisterType<IPackageDependencyResolverService, PackageDependencyResolverService>();
             serviceLocator.RegisterType<IFrameworkNameProvider, DefaultFrameworkNameProvider>();

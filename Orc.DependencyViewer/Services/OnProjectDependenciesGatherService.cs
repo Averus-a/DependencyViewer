@@ -1,6 +1,7 @@
 ﻿namespace Orc.DependencyViewer.Services
 {
     using Catel.Logging;
+    using NuGet.Protocol.Core.Types;
     using Orc.DependencyViewer.Model;
     using Orc.DependencyViewer.ProjectManagement;
     using Orc.NuGetExplorer;
@@ -29,6 +30,11 @@
                 return false;
             }
 
+            if(activeProject.IsFinished)
+            {
+                return true;
+            }
+
             var updatedPackageCollection = new List<PackageReference>(activeProject.PackageCollection.Cast<PackageReference>());
 
             foreach(var reference in activeProject.PackageCollection)
@@ -37,7 +43,8 @@
             }
 
             //setup new references collection
-            activeProject.PackageCollection = updatedPackageCollection.Distinct();
+            activeProject.PackageCollection = updatedPackageCollection.Where(reference => reference.To != null).Distinct();
+            activeProject.IsFinished = true;
 
             return true;
         }
@@ -48,7 +55,10 @@
 
             var result = await _packageDependencyResolverService.ResolveAsync(packageReference.From, chosenFramework);
 
-            gatheredReferences.AddRange(result.Select(x => new PackageReference(packageReference.From, x)));
+            //transform to distinct list of package references
+            var transformedCollection = result.SelectMany(package => (package as SourcePackageDependencyInfo)?.ToSeparateReferences()).Distinct().ToList();
+
+            gatheredReferences.AddRange(transformedCollection);
         }
     }
 }

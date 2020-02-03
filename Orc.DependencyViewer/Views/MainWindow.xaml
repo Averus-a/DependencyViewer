@@ -13,7 +13,7 @@
         Title="MainWindow" Height="500" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -38,15 +38,30 @@
             <Button Height="28" Width="28" Margin="4 8 8 8" HorizontalAlignment="Right"
                     Command="{Binding OpenPackageSourceSettings}"
                     ToolTip="Open package source settigns">
-                <Image Source="{orccontrols:FontImage {x:Static local:FontAwesome.Cogs}}"/>
+                <Image Source="{orccontrols:FontImage {x:Static local:FontAwesome.Cogs}, FontFamily=FontAwesome}"/>
             </Button>
             
         </StackPanel>
-      
-        <csv:CsvTextEditorControl Grid.Row="1" MinHeight="200"/>
-        <Button Grid.Column="1" Grid.Row="1"
+
+        <TextBlock Text="Package list:"
+                   Grid.Row="1"/>
+
+        <csv:CsvTextEditorControl Grid.Row="2" MinHeight="320"
+                                  MinWidth="400"
+                                  Text="{Binding RawText}"
+                                  Scope="{Binding Scope}"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="2"
+                    Orientation="Vertical">
+
+            <orccontrols:LogViewerControl MaxHeight="400"/>
+
+            <Button Height="60" Width="140"
                 Command="{Binding GatherDependenciesOnProject}">
-            Give me the full list of dependencies!
-        </Button>
+                <TextBlock Text="Get the list of dependencies!"
+                       TextWrapping="Wrap"/>
+            </Button>
+        </StackPanel>
+
     </Grid>
 </catel:DataWindow>

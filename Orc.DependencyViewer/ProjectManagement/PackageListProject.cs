@@ -17,5 +17,9 @@
         }
 
         public IEnumerable<IEntity> PackageCollection { get; set; }
+
+        public string RawContent { get; set; }
+
+        public bool IsFinished { get; set; }
     }
 }

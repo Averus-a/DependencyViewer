@@ -23,5 +23,21 @@ namespace Orc.DependencyViewer.Model
         public PackageIdentity From { get; set; }
 
         public PackageIdentity To { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is PackageReference objPackage)
+            {
+                return (From is null && objPackage.From is null || From.Equals(objPackage.From)
+                   && (To is null && objPackage.To is null || To.Equals(objPackage.To)));
+            }
+
+            throw new InvalidOperationException();
+        }
+
+        public override int GetHashCode()
+        {
+            return From?.GetHashCode() ?? 0 ^ To?.GetHashCode() ?? 0;
+        }
     }
 }

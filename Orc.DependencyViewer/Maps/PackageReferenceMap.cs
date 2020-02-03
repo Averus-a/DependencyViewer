@@ -29,7 +29,7 @@
 
             public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
             {
-                return value.ToString();
+                return value?.ToString() ?? string.Empty;
             }
         }
     }

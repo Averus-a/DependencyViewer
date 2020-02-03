@@ -24,9 +24,13 @@
         private readonly IFrameworkNameProvider _frameworkNameProvider;
         private readonly IEnumerable<SourceRepository> repositories;
 
-        public PackageDependencyResolverService(IFrameworkNameProvider frameworkNameProvider)
+        public PackageDependencyResolverService(IFrameworkNameProvider frameworkNameProvider, ISourceRepositoryProvider sourceRepositoryProvider)
         {
+            Argument.IsNotNull(() => frameworkNameProvider);
+            Argument.IsNotNull(() => sourceRepositoryProvider);
+
             _frameworkNameProvider = frameworkNameProvider;
+            repositories = sourceRepositoryProvider.GetRepositories();
         }
 
         public async Task<IEnumerable<PackageIdentity>> ResolveAsync(PackageIdentity package, NuGetFramework targetFramework, bool ignoreMissingPackages = true)
@@ -101,6 +105,8 @@
                     if (relatedDepInfo != null)
                     {
                         downloadStack.Push(relatedDepInfo);
+                        Log.Info($"Add dependency {relatedIdentity} for package {identity}");
+                        continue;
                     }
 
                     if (ignoreMissingPackages)

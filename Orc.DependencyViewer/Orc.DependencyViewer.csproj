@@ -254,6 +254,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\SourcePackageDependencyInfoExtensions.cs" />
     <Compile Include="Fonts\FontAwesome.cs" />
     <Compile Include="Maps\PackageReferenceMap.cs" />
     <Compile Include="Model\IEntity.cs" />
@@ -263,6 +264,7 @@
     <Compile Include="NuGet\Interfaces\IPackageDependencyResolverService.cs" />
     <Compile Include="ProjectManagement\PackageListProject.cs" />
     <Compile Include="ProjectManagement\Serializers\ProjectReader.cs" />
+    <Compile Include="ProjectManagement\Serializers\ProjectWriter.cs" />
     <Compile Include="Services\CsvConfigurationService.cs" />
     <Compile Include="Services\ExportFileWriterService.cs" />
     <Compile Include="Services\Interfaces\ICsvConfigurationService.cs" />
