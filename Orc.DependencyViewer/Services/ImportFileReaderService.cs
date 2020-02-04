@@ -21,10 +21,10 @@
         public async Task<IEnumerable<IEntity>> ReadAsync(string path)
         {
             var csvContext = new CsvContext<PackageReference>();
-            csvContext.ClassMap = new PackageReferenceMap();
+            csvContext.ClassMap = new PackageReferenceReadMap();
             var records = await _csvReaderService.ReadRecordsAsync<PackageReference>(path, csvContext);
 
-            return records;
+            return records.Cast<IEntity>();
         }
     }
 }

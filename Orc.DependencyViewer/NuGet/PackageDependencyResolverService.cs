@@ -33,7 +33,7 @@
             repositories = sourceRepositoryProvider.GetRepositories();
         }
 
-        public async Task<IEnumerable<PackageIdentity>> ResolveAsync(PackageIdentity package, NuGetFramework targetFramework, bool ignoreMissingPackages = true)
+        public async Task<IEnumerable<PackageIdentity>> ResolveAsync(PackageIdentity package, NuGetFramework targetFramework, bool includePrelease = true, bool ignoreMissingPackages = true)
         {
             DependencyBehavior dependencyBehavior = DependencyBehavior.Lowest;
 

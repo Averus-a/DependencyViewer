@@ -7,6 +7,6 @@
 
     public interface IPackageDependencyResolverService
     {
-        Task<IEnumerable<PackageIdentity>> ResolveAsync(PackageIdentity package, NuGetFramework targetFramework, bool ignoreMissingPackages = true);
+        Task<IEnumerable<PackageIdentity>> ResolveAsync(PackageIdentity package, NuGetFramework targetFramework, bool includePrelease, bool ignoreMissingPackages = true);
     }
 }

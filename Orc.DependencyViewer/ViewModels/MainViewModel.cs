@@ -50,6 +50,10 @@
 
         public object Scope { get; set; } = "Orc.DependencyViewer";
 
+        public bool UseStableDependencies { get; set; } = true;
+
+        public bool BuildDependenciesOnlyFromList { get; set; } = true;
+
         protected override Task InitializeAsync()
         {
             OpenFile = new TaskCommand(OpenFileExecuteAsync);
@@ -100,7 +104,13 @@
         {
             using (_pleaseWaitService.PushInScope())
             {
-                await _projectOperationService.ExecuteAsync(_projectManager.ActiveProject);
+                var options = new DependenciesGatherOptions()
+                { 
+                    UseStableDependencies = UseStableDependencies,
+                    BuildDependenciesOnlyFromList = BuildDependenciesOnlyFromList
+                };
+
+                await _projectOperationService.ExecuteAsync(_projectManager.ActiveProject, options);
             }
         }
 

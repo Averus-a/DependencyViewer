@@ -1,4 +1,5 @@
 ﻿using NuGet.Packaging.Core;
+using NuGet.Versioning;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,32 +8,53 @@ using System.Threading.Tasks;
 
 namespace Orc.DependencyViewer.Model
 {
-    public class PackageReference : IEntity
+    public struct PackageReference : IEntity
     {
-        public PackageReference()
-        {
-
-        }
-
         public PackageReference(PackageIdentity from, PackageIdentity to)
         {
-            From = from;
-            To = to;
+            FromVersion = from.Version;
+            FromId = from.Id;
+
+            ToVersion = to.Version;
+            ToId = to.Id;
         }
 
-        public PackageIdentity From { get; set; }
+        public string FromId { get; set; }
+        public NuGetVersion FromVersion { get; set;}
+        public PackageIdentity From => FromId is null ? null : new PackageIdentity(FromId, FromVersion);
 
-        public PackageIdentity To { get; set; }
+        public string ToId { get; set; }
+        public NuGetVersion ToVersion { get; set; }
+        public PackageIdentity To => ToId is null ? null : new PackageIdentity(ToId, ToVersion);
+
 
         public override bool Equals(object obj)
         {
             if (obj is PackageReference objPackage)
             {
-                return (From is null && objPackage.From is null || From.Equals(objPackage.From)
-                   && (To is null && objPackage.To is null || To.Equals(objPackage.To)));
+                return From.Equals(objPackage.From) && To.Equals(objPackage.To);
+                //return PackageIdentityEquals(From, objPackage.From) && PackageIdentityEquals(To, objPackage.To);
             }
 
             throw new InvalidOperationException();
+        }
+
+        private bool PackageIdentityEquals(PackageIdentity x, PackageIdentity y)
+        {
+            if (ReferenceEquals(x, y))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(x, null)
+                || ReferenceEquals(y, null))
+            {
+                return false;
+            }
+
+            var versionComparer = new VersionComparer(VersionComparison.Default);
+            return versionComparer.Equals(x.Version, y.Version)
+                   && StringComparer.OrdinalIgnoreCase.Equals(x.Id, y.Id);
         }
 
         public override int GetHashCode()

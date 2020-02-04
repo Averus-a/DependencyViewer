@@ -256,6 +256,8 @@
     </Compile>
     <Compile Include="Extensions\SourcePackageDependencyInfoExtensions.cs" />
     <Compile Include="Fonts\FontAwesome.cs" />
+    <Compile Include="Maps\Converters\NuGetVersionTypeConverter.cs" />
+    <Compile Include="Maps\Converters\PackageIdentityTypeConverter.cs" />
     <Compile Include="Maps\PackageReferenceMap.cs" />
     <Compile Include="Model\IEntity.cs" />
     <Compile Include="Model\PackageReference.cs" />

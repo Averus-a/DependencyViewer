@@ -18,6 +18,8 @@
 
         public IEnumerable<IEntity> PackageCollection { get; set; }
 
+        public IEnumerable<IEntity> DependencyCollection { get; set; }
+
         public string RawContent { get; set; }
 
         public bool IsFinished { get; set; }

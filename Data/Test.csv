@@ -1,4 +1,5 @@
-From,To
-NuGet.PackageManagement 5.5.0-preview.2.6382, Microsoft.Web.Xdt (>= 2.1.2)
-NuGet.PackageManagement 5.5.0-preview.2.6382, NuGet.Resolver (>= 5.5.0-preview.2.6382)
-NuGet.PackageManagement 5.5.0-preview.2.6382, NuGet.Commands (>= 5.5.0-preview.2.6382)
+FromId, FromVersion
+NuGet.PackageManagement, 5.5.0-preview.2.6382
+NuGet.Resolver, 5.5.0-preview.2.6382
+NuGet.Commands, 5.5.0-preview.2.6382
+Microsoft.Web.Xdt, 2.1.2

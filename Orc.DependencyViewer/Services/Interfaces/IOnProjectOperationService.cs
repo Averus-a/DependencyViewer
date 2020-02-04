@@ -9,6 +9,11 @@
 
     public interface IOnProjectOperationService
     {
-        Task<bool> ExecuteAsync(IProject project);
+        Task<bool> ExecuteAsync(IProject project, IOperationOptions option);
+    }
+
+    public interface IOperationOptions
+    {
+
     }
 }

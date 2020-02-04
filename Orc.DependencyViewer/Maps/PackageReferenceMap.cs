@@ -16,21 +16,19 @@
     {
         public PackageReferenceMap()
         {
-            Map(entity => entity.To).TypeConverter<PackageIdentityTypeConverter>();
-            Map(entity => entity.From).TypeConverter<PackageIdentityTypeConverter>();
+            Map(entity => entity.FromId);
+            Map(entity => entity.FromVersion).TypeConverter<NuGetVersionTypeConverter>();
+            Map(entity => entity.ToId);
+            Map(entity => entity.ToVersion).TypeConverter<NuGetVersionTypeConverter>();
         }
+    }
 
-        private class PackageIdentityTypeConverter : DefaultTypeConverter
+    public class PackageReferenceReadMap : ClassMapBase<PackageReference>
+    {
+        public PackageReferenceReadMap()
         {
-            public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-            {
-                return PackageIdentityParser.Parse(text);
-            }
-
-            public override string ConvertToString(object value, IWriterRow row, MemberMapData memberMapData)
-            {
-                return value?.ToString() ?? string.Empty;
-            }
+            Map(entity => entity.FromId);
+            Map(entity => entity.FromVersion).TypeConverter<NuGetVersionTypeConverter>();
         }
     }
 }

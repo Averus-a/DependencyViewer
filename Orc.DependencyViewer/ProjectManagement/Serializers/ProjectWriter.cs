@@ -21,7 +21,7 @@
         {
             try
             {
-                await _fileWriterService.WriteAsync(location, project.PackageCollection);
+                await _fileWriterService.WriteAsync(location, project.DependencyCollection);
                 return true;
             }
             catch(Exception e)
