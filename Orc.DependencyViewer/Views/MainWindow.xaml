@@ -41,8 +41,8 @@
                 <Image Source="{orccontrols:FontImage {x:Static local:FontAwesome.Cogs}, FontFamily=FontAwesome}"/>
             </Button>
 
-            <CheckBox Content="Choose Stable Dependencies"
-                      IsChecked="{Binding UseStableDependencies}"/>
+            <!--<CheckBox Content="Choose Stable Dependencies"
+                      IsChecked="{Binding UseStableDependencies}"/>-->
             <CheckBox Content="Build Dependency tree using only imported list"
                       IsChecked="{Binding BuildDependenciesOnlyFromList}"/>
 
